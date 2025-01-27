@@ -1,3 +1,4 @@
+
 # GraphQL Demo: Student and Subjects Management
 
 This project demonstrates the implementation of a **GraphQL server** and a **GraphQL client** using **Spring Boot** with **WebFlux**. It provides APIs to manage student data and their associated subjects, showcasing both query and mutation operations.
@@ -25,57 +26,58 @@ This project demonstrates the implementation of a **GraphQL server** and a **Gra
 1. **Clone the Repository**:
    ```bash
    git clone https://github.com/jhonarias91/graphqlDemoStudentSubjects.git
-   cd graphqlDemoStudentSubjects```
+   cd graphqlDemoStudentSubjects
+   ```
 
+2. **Build the Project**: Ensure you have **Java 17+** and **Maven** installed.
+   ```bash
+   mvn clean install
+   ```
 
-2. Build the Project: Ensure you have Java 17+ and Maven installed.
-```bash
-mvn clean install
+3. **Run the Application**: Start the application with:
+   ```bash
+   mvn spring-boot:run
+   ```
 
-Run the Application: Start the application with:
+4. **Test the GraphQL Server**: Open a browser or tool like **GraphQL Playground** at:
+   ```
+   http://localhost:8080/graphql
+   ```
 
-```bash
-mvn spring-boot:run```
+5. **Fetch student by ID**:
+   ```graphql
+   query {
+     findStudent(id: 1) {
+       id
+       firstName
+       lastName
+       email
+       learningSubjects {
+         subjectName
+         marksObtained
+       }
+     }
+   }
+   ```
 
-3. Test the GraphQL Server: Open a browser or tool like GraphQL Playground at:
+6. **Create a new student**:
+   ```graphql
+   mutation {
+     createStudent(student: {
+       firstName: "John",
+       lastName: "Doe",
+       email: "john.doe@example.com",
+       city: "New York",
+       street: "5th Avenue",
+       learningSubjects: [
+         { subjectName: "Math", marksObtained: 90.0 },
+         { subjectName: "Science", marksObtained: 85.0 }
+       ]
+     }) {
+       id
+       fullName
+     }
+   }
+   ```
 
-```bash
-http://localhost:8080/graphql```
-
-4. Fetch student by ID:
-
-```graphql
-query {
-  findStudent(id: 1) {
-    id
-    firstName
-    lastName
-    email
-    learningSubjects {
-      subjectName
-      marksObtained
-    }
-  }
-}```
-
-5. Create a new student:
-
-```graphql
-mutation {
-  createStudent(student: {
-    firstName: "John",
-    lastName: "Doe",
-    email: "john.doe@example.com",
-    city: "New York",
-    street: "5th Avenue",
-    learningSubjects: [
-      { subjectName: "Math", marksObtained: 90.0 },
-      { subjectName: "Science", marksObtained: 85.0 }
-    ]
-  }) {
-    id
-    fullName
-  }
-}
-```
-Client Example: The client (StudentService) demonstrates fetching a student by ID and creating a new student programmatically.
+7. **Client Example**: The client (`StudentService`) demonstrates fetching a student by ID and creating a new student programmatically.
