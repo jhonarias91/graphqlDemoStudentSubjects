@@ -1,0 +1,28 @@
+type Query{
+    firstQuery:String
+    secondQuery:String
+    fullName (sampleRequest:SampleRequest) :String
+    findStudent(id: Int) : StudentResponse
+}
+
+input SampleRequest{
+    firstName:String!
+    lastName:String
+}
+
+type StudentResponse{
+    id:Int
+    firstName:String
+    lastName:String
+    email:String
+    street:String
+    city:String
+    fullName:String
+    learningSubjects(id:Int, subjectNames:[String]): [SubjectResponse]
+}
+type SubjectResponse{
+    id:Int
+    subjectName:String
+    marksObtained:Float
+}
+
