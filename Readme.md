@@ -29,10 +29,8 @@ This project demonstrates the implementation of a **GraphQL server** and a **Gra
 
 
 2. Build the Project: Ensure you have Java 17+ and Maven installed.
-
 ```bash
-mvn clean install
-```
+mvn clean install```
 
 Run the Application: Start the application with:
 
